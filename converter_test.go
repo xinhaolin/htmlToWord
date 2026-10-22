@@ -278,6 +278,29 @@ func TestBrowserRuntimeIntegration(t *testing.T) {
 	if report.Stats.Charts != 1 || report.Stats.Checkboxes != 1 {
 		t.Fatalf("native objects lost: %+v", report)
 	}
+	packageXML, err := zip.NewReader(bytes.NewReader(out.Bytes()), int64(out.Len()))
+	if err != nil {
+		t.Fatal(err)
+	}
+	stylesheetApplied := false
+	for _, file := range packageXML.File {
+		if file.Name != "word/document.xml" {
+			continue
+		}
+		reader, err := file.Open()
+		if err != nil {
+			t.Fatal(err)
+		}
+		data, err := io.ReadAll(reader)
+		reader.Close()
+		if err != nil {
+			t.Fatal(err)
+		}
+		stylesheetApplied = bytes.Contains(bytes.ToLower(data), []byte(`w:color w:val="397384"`))
+	}
+	if !stylesheetApplied {
+		t.Fatalf("resolved stylesheet was not applied before extraction: %+v", report.Diagnostics)
+	}
 	for _, d := range report.Diagnostics {
 		if d.Stage == StageResources {
 			t.Fatalf("relative stylesheet was not resolved: %+v", d)
@@ -396,6 +419,8 @@ func TestBrowserCancellationIntegration(t *testing.T) {
 	}()
 	select {
 	case <-entered:
+	case err := <-done:
+		t.Fatalf("conversion ended before the blocking resource was requested: %v", err)
 	case <-time.After(10 * time.Second):
 		t.Fatal("browser did not request the blocking resource")
 	}
