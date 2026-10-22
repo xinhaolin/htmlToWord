@@ -10,6 +10,7 @@ First numbered release of the experimental Go SDK. The API may change before v1.
 - Report typed errors, structured diagnostics and configurable source/resource/document limits.
 - Preserve standards mode when adding BaseURL and keep footer/symbol conversion explicit.
 - Include a Go CLI, English/Chinese documentation, real render gallery, downloadable examples and an optional local validation tool.
+- Wait for linked stylesheets before settling fonts/images and extracting layout.
 - Add static guides, technical articles, an edited office-client capture demo and reproducible documentation checks.
 
 Runtime: Go 1.23+, separately installed Chrome/Chromium, macOS or Linux. Windows pipe transport is unsupported. Arbitrary browser/office pixel parity and complete client-side chart data editing are not claimed.

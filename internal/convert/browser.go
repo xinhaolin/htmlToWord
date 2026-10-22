@@ -182,7 +182,25 @@ func AnalyzeWithRuntime(ctx context.Context, html, css string, o Options, execut
 	if e = browser.Eval(ctx, session, `globalThis.__htmlwordPolicy=`+string(settings), nil); e != nil {
 		return doc, e
 	}
-	if e = browser.Eval(ctx, session, `Promise.race([Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>true),new Promise(r=>setTimeout(()=>r(false),8000))])`, nil); e != nil {
+	// fonts.ready and readyState can settle before setDocumentContent starts a
+	// linked stylesheet. Arm listeners before reconnecting unresolved links, then
+	// settle fonts/images. The resolver cache coalesces duplicate resource loads.
+	if e = browser.Eval(ctx, session, `Promise.race([
+  (async () => {
+    await Promise.all([...document.querySelectorAll('link[rel~="stylesheet"]')].map(link => {
+      if (link.sheet) return Promise.resolve();
+      return new Promise(resolve => {
+        const pending = link.cloneNode(true);
+        pending.addEventListener('load', resolve, {once: true});
+        pending.addEventListener('error', resolve, {once: true});
+        link.replaceWith(pending);
+      });
+    }));
+    await Promise.all([document.fonts.ready, ...[...document.images].map(i => i.decode().catch(() => {}))]);
+    return true;
+  })(),
+  new Promise(resolve => setTimeout(() => resolve(false), 8000))
+])`, nil); e != nil {
 		return doc, e
 	}
 	if e = browser.Eval(ctx, session, extractJS, &doc); e != nil {
