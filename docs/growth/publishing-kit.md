@@ -23,13 +23,9 @@ Guide and examples: https://xinhaolin.github.io/htmlToWord/
 
 I'd appreciate small reproduction cases and feedback from the office clients you use.
 
-## Show HN
+## Hacker News: manual participation only
 
-Title: Show HN: HTMLWord – Convert HTML to editable DOCX in Go
-
-URL: https://github.com/xinhaolin/htmlToWord
-
-First comment: use the Go community post above, plus the direct release download and reproducible CLI example. Show HN requires something people can actually try. Do not submit just the article or a sign-up page. Follow the community's current rules and answer technical questions directly.
+[HN guidelines](https://news.ycombinator.com/newsguidelines.html) prohibit generated text and automated posting. Do not automatically submit the prepared community copy there. The maintainer must write their own submission and participate personally. [Show HN guidance](https://news.ycombinator.com/showhn.html) requires a runnable project that people can try, rather than an article or signup page. The repository and downloadable release are the relevant factual references.
 
 ## Search and sharing
 
@@ -39,6 +35,6 @@ Use the product name and the task together: HTML to DOCX in Go; HTML to Word Go 
 
 Record each publication URL and date, repository unique visitors, net new stars, identifiable trial feedback, bug reports and repeat users. Leave unavailable metrics unknown. Stars, issue activity and package reverse-dependencies are different signals; pkg.go.dev is not an SDK download counter.
 
-Suggested review: day 1 repository/docs/release; day 2 Chinese article; day 3 Go community; day 4 Show HN if ready; days 5–7 reply, fix reproducible issues and compare referral quality. This is a review cadence, not a scheduled automation.
+Suggested review: day 1 repository/docs/release; day 2 Chinese article; day 3 Go community; day 4 maintainer-written Show HN if ready; days 5–7 reply, fix reproducible issues and compare referral quality. This is a review cadence, not a scheduled automation.
 
-Awesome Go is a later submission target: check its current maturity, version and test/documentation requirements before opening a PR.
+Awesome Go is a later submission target. Its [current contribution guidelines](https://github.com/avelino/awesome-go/blob/main/CONTRIBUTING.md) require at least five months of repository history, a SemVer release, English API documentation and meaningful coverage thresholds. This newly published repository does not meet the history requirement, so no submission is opened now.
