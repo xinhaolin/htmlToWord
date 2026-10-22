@@ -6,7 +6,7 @@
 
 HTMLWord 用 Chromium 测量浏览器布局，用 Go OOXML 写入器生成文档，**没有第三方 Go 模块依赖**。运行时需要单独安装 Chrome 或 Chromium；LibreOffice 和前端验证页面属于可选开发工具。
 
-**状态：SDK 预览版。** 源码仓库：[xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord)。首个正式版本之前，API 可能调整。采用 [Apache-2.0](LICENSE) 许可证。
+源码仓库：[xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord) · 许可证：[Apache-2.0](LICENSE)
 
 ## 实际导出截图
 
@@ -34,7 +34,7 @@ Chromium 沙箱保持开启。请以普通用户运行；容器用户和内核�
 go get github.com/xinhaolin/htmlToWord@latest
 ```
 
-目前尚未创建首个稳定版本标签，`@latest` 会解析到默认分支可用的版本。导入路径为 `github.com/xinhaolin/htmlToWord`，Go 包名为 `htmlword`。
+导入路径为 `github.com/xinhaolin/htmlToWord`，Go 包名为 `htmlword`。
 
 本地开发 SDK 时，可以替换到你的源码目录：
 
@@ -234,4 +234,4 @@ htmlword/
   tools/validation/      回归工具与被忽略的本地产物
 ```
 
-更多信息见[验证证据与未验证项](docs/validation.md)、[贡献指南](CONTRIBUTING.md)、[变更记录](CHANGELOG.md)及[第三方运行时说明](THIRD_PARTY_NOTICES.md)。托管检查结果见 [GitHub Actions](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml)。本地渲染证据另行记录，目前尚未创建稳定版本标签。
+更多信息见[验证证据与未验证项](docs/validation.md)、[贡献指南](CONTRIBUTING.md)、[变更记录](CHANGELOG.md)及[第三方运行时说明](THIRD_PARTY_NOTICES.md)。托管检查结果见 [GitHub Actions](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml)，本地渲染证据另行记录。

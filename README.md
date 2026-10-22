@@ -6,7 +6,7 @@ A Go SDK for converting **static HTML and CSS into editable, flowing DOCX docume
 
 HTMLWord uses Chromium to measure layout and a Go OOXML writer to build the document. It has **no third-party Go module dependencies**. Chrome or Chromium is a required runtime; LibreOffice and the validation frontend are optional development tools.
 
-**Status: preview SDK.** Source: [xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord). The API may change before the first tagged release. Licensed under [Apache-2.0](LICENSE).
+Repository: [xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord) · License: [Apache-2.0](LICENSE)
 
 ## Actual output
 
@@ -34,7 +34,7 @@ Install the SDK in your Go module:
 go get github.com/xinhaolin/htmlToWord@latest
 ```
 
-The first stable version has not been tagged; `@latest` resolves to the available default-branch version. Import `github.com/xinhaolin/htmlToWord` and use its Go package name, `htmlword`.
+Import `github.com/xinhaolin/htmlToWord` and use its Go package name, `htmlword`.
 
 For local SDK development, replace the module with your checkout:
 
@@ -234,4 +234,4 @@ htmlword/
   tools/validation/      Regression tooling and ignored local artifacts
 ```
 
-See [validation evidence and remaining gaps](docs/validation.md), [contribution guidelines](CONTRIBUTING.md), [change log](CHANGELOG.md) and [third-party runtime notices](THIRD_PARTY_NOTICES.md). See [GitHub Actions](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml) for hosted check results. The local rendering evidence is documented separately; no stable release has been tagged yet.
+See [validation evidence and remaining gaps](docs/validation.md), [contribution guidelines](CONTRIBUTING.md), [change log](CHANGELOG.md) and [third-party runtime notices](THIRD_PARTY_NOTICES.md). Hosted check results are available from [GitHub Actions](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml); local rendering evidence is documented separately.
