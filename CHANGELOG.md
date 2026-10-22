@@ -1,15 +1,15 @@
 # Changelog
 
-## Unreleased — SDK preview
+## v0.1.0 — 2026-10-22
 
-- Set the repository/module path to `github.com/xinhaolin/htmlToWord` and document remote installation.
+First numbered release of the experimental Go SDK. The API may change before v1.
 
-- Expose `New`, `Converter.Convert`, `Close`, configuration, typed errors, diagnostics, statistics and timing through the root Go package.
-- Add cancellation, queue/concurrency control, temporary profile cleanup, source/resource/output limits and explicit resource resolvers.
-- Make footer promotion and literal checkbox-symbol recognition explicit SDK options.
-- Preserve HTML standards mode when installing an asset BaseURL, preventing table metric drift between SDK and CLI usage.
-- Preserve the existing native paragraph/table/list engine, native Office charts with embedded XLSX data and checkbox content controls.
-- Move the validation frontend to a separate module under `tools/playground` and provide a public-API-only CLI.
-- Add English-default and Chinese documentation, runnable examples, rendered DOCX screenshots, regression instructions and CI definitions.
+- Convert static HTML/CSS into editable flowing DOCX with native paragraphs, lists and tables.
+- Generate annotated Office charts with embedded XLSX data and native checkbox content controls.
+- Provide context cancellation, bounded concurrency, isolated Chromium profiles and explicit resource resolvers.
+- Report typed errors, structured diagnostics and configurable source/resource/document limits.
+- Preserve standards mode when adding BaseURL and keep footer/symbol conversion explicit.
+- Include a Go CLI, English/Chinese documentation, real render gallery, downloadable examples and an optional local validation tool.
+- Add static guides, technical articles, an edited office-client capture demo and reproducible documentation checks.
 
-Repository and module path: `github.com/xinhaolin/htmlToWord`. A stable version tag has not been created.
+Runtime: Go 1.23+, separately installed Chrome/Chromium, macOS or Linux. Windows pipe transport is unsupported. Arbitrary browser/office pixel parity and complete client-side chart data editing are not claimed.

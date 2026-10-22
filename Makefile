@@ -1,4 +1,4 @@
-.PHONY: build test integration vet playground package
+.PHONY: build test integration vet playground package docs
 build:
 	mkdir -p bin
 	go build -trimpath -o bin/htmlword ./cmd/htmlword
@@ -14,3 +14,6 @@ playground:
 	cd tools/playground && go run ./cmd/playground -addr 127.0.0.1:8787
 package:
 	python3 scripts/package-sdk.py
+docs:
+	python3 scripts/build-docs.py
+	python3 scripts/build-docs.py --check

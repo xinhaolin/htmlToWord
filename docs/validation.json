@@ -293,7 +293,7 @@
   "sdk_source_sha256": {
     "converter.go": "109b9e225337b649f93f37111027dc45e36d28bce55bf24d7a802316b204e033",
     "diagnostics.go": "ee5168cd4d5ae5216eb99d10c8c4ee05e721f98bbb658b656ee149d761f72e79",
-    "doc.go": "cec1fd7f54a8cb3cd26b87c63f25b62b52acb34e7c758beb2826421bc6dba109",
+    "doc.go": "9615ee9c85c28c6126595e2e71fab7781016ff779a2f474747395a62278b9bb6",
     "errors.go": "2887169dca0c1cdf0963bfecb1596ac04d5bf0c7fecef4f5aede9042364726d4",
     "go.mod": "43747dc8b38a80c7a691e05de2818566f4435772b38928d58ada80bac0fa8e97",
     "internal/cdp/browser.go": "7a98c3156dccfa342f14232421b2210a011edcac76ec1dc99ff83098197a98e8",
@@ -363,7 +363,9 @@
     "repository_url": "https://github.com/xinhaolin/htmlToWord",
     "direct_consumer_documents_checked": 14,
     "all_outputs_byte_identical_to_rendered_baseline": true,
-    "ci_results_url": "https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml"
+    "ci_results_url": "https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml",
+    "launch_version": "v0.1.0",
+    "launch_sample_documents_checked": 14
   },
-  "stable_version_tag_published": false
+  "stable_version_tag_published_at_original_validation": false
 }

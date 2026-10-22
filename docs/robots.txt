@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xinhaolin.github.io/htmlToWord/sitemap.xml

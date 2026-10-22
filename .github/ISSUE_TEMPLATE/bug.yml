@@ -1,0 +1,26 @@
+name: Conversion bug
+description: Report a reproducible HTML to DOCX problem
+title: "[Conversion] "
+body:
+  - type: textarea
+    id: input
+    attributes:
+      label: Minimal static HTML and CSS
+      description: Use synthetic content. Do not include private documents, credentials or private URLs.
+      render: html
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual result
+      description: Include diagnostics and a screenshot if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: SDK version, OS, Go, Chromium, fonts, office client and version.
+    validations:
+      required: true

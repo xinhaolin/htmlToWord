@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Native Word charts and checkboxes | HTMLWord</title><meta name="description" content="Export annotated HTML charts as Office charts with XLSX data, and HTML checkbox inputs as selectable Word controls."><link rel="canonical" href="https://xinhaolin.github.io/htmlToWord/guides/native-objects.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Native Word charts and checkboxes"><meta property="og:description" content="Export annotated HTML charts as Office charts with XLSX data, and HTML checkbox inputs as selectable Word controls."><meta property="og:url" content="https://xinhaolin.github.io/htmlToWord/guides/native-objects.html"><meta property="og:image" content="https://xinhaolin.github.io/htmlToWord/assets/social-preview.png"><meta property="og:image:alt" content="HTMLWord converts HTML to editable Word documents in Go"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/wordmark.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><link rel="alternate" type="application/atom+xml" href="../feed.xml" title="HTMLWord notes">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "name": "Native Word charts and checkboxes", "description": "Export annotated HTML charts as Office charts with XLSX data, and HTML checkbox inputs as selectable Word controls.", "url": "https://xinhaolin.github.io/htmlToWord/guides/native-objects.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "HTMLWord", "url": "https://xinhaolin.github.io/htmlToWord/"}, "author": {"@type": "Person", "name": "xinhaolin", "url": "https://github.com/xinhaolin"}}</script><script src="../assets/site.js" defer></script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a class="wordmark" href="../index.html">HTMLWord<span>Go SDK</span></a><nav aria-label="Main"><a href="getting-started.html">Quick start</a><a href="../examples/index.html">Examples</a><a href="../articles/html-to-docx-go.html">How it works</a><a href="../zh/index.html">简体中文</a><a href="https://github.com/xinhaolin/htmlToWord">GitHub ↗</a></nav></header>
+<main id="content"><article class="prose"><p class="eyebrow">HTMLWORD / GUIDE</p><h1>Native Word charts and checkboxes</h1>
+<p>HTMLWord maps explicit chart data to Office chart parts and an embedded XLSX workbook. Real HTML checkboxes become Word checkbox content controls. These objects are stored in the DOCX package alongside ordinary paragraphs and tables.</p>
+<h2>Export chart data</h2>
+<p>Add data-office-chart to an element with an explicit size. The annotation supplies the categories, series and numeric values; the SDK does not recover chart data from pixels.</p>
+<pre><code>&lt;div style=&quot;width:520px;height:240px&quot;
+  data-office-chart=&#x27;{
+    &quot;type&quot;:&quot;column&quot;,
+    &quot;title&quot;:&quot;Quarterly delivery&quot;,
+    &quot;categories&quot;:[&quot;Q1&quot;,&quot;Q2&quot;,&quot;Q3&quot;,&quot;Q4&quot;],
+    &quot;series&quot;:[
+      {&quot;name&quot;:&quot;Planned&quot;,&quot;values&quot;:[18,24,28,34]},
+      {&quot;name&quot;:&quot;Delivered&quot;,&quot;values&quot;:[16,23,27,36]}
+    ]
+  }&#x27;&gt;&lt;/div&gt;</code></pre>
+<p>Supported types are line, column, bar, pie and doughnut. A chart supports up to 512 categories and 16 series. Pie and doughnut charts require one series, nonnegative values and a positive total.</p>
+<p>The exported file contains word/charts parts and an XLSX workbook under word/embeddings. This distinguishes native chart output from a screenshot. If the annotation is invalid, diagnostics explain the failure and the original visual is retained when possible.</p>
+<h2>Export selectable checkboxes</h2>
+<pre><code>&lt;p&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Reviewed&lt;/label&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Approved&lt;/label&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; disabled&gt; Locked item&lt;/label&gt;&lt;/p&gt;</code></pre>
+<p>The output uses w14:checkbox content controls and preserves the initial checked state. Disabled inputs are locked. Browser event handlers and form submission logic are not exported.</p>
+<p>Literal square symbols such as □ remain text by default. Set Options.SymbolCheckboxes to true only when you deliberately want leading square symbols converted into controls.</p>
+<h2>What has been verified</h2>
+<p>The local structural suite checks chart categories, series values, chart caches and embedded workbook cells. An independent WPS macOS probe recognized a native chart, retained its data after saving, and changed a checkbox from unchecked to checked after a click and save.</p>
+<p>The fresh launch demonstration records WPS text editing, page reflow and checkbox interaction. The complete chart Edit Data workflow is not yet verified. Microsoft Word was not available for the current local validation; client support should be tested on the exact versions you deploy.</p>
+<p>Download the <a href="https://github.com/xinhaolin/htmlToWord/releases/download/v0.1.0/sdk-report.docx">operating report</a> and <a href="https://github.com/xinhaolin/htmlToWord/releases/download/v0.1.0/sdk-form.docx">project checklist</a>. Their inputs are included in the <a href="https://github.com/xinhaolin/htmlToWord/releases/download/v0.1.0/htmlword-examples.zip">sample archive</a>.</p></article></main><footer><a class="wordmark" href="../index.html">HTMLWord</a><p>Static HTML. Editable documents. Go SDK.</p><div><a href="https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0">v0.1.0</a><a href="https://github.com/xinhaolin/htmlToWord/blob/main/LICENSE">Apache-2.0</a><a href="https://github.com/xinhaolin/htmlToWord/issues">Issues</a><a href="https://github.com/xinhaolin/htmlToWord/security/advisories/new">Report a vulnerability</a><a href="../validation.md">Validation scope</a></div></footer></body></html>

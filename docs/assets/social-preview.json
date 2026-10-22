@@ -1,0 +1,15 @@
+{
+  "dimensions": [
+    1280,
+    640
+  ],
+  "layout": "Project wordmark and text composed with a real DOCX render; no simulated UI",
+  "source_image": "docs/assets/sdk-report.png",
+  "source_sha256": "e3b4a268fbda7a2bd13151b220282475aa54d39df34c26cccb6481917d4189fb",
+  "output_sha256": "249c72b6723b345882fa10ab4cb9b8bc9288104e6dda22b080324112523cb2b5",
+  "fonts": [
+    "Georgia",
+    "Arial"
+  ],
+  "font_binaries_distributed": false
+}

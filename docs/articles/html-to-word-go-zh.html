@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用 Go 把复杂 HTML 转成可编辑 Word | HTMLWord</title><meta name="description" content="HTMLWord 的技术实现、图表与复选框原生映射、自动分页验证，以及复杂 HTML 转 Word 的支持边界。"><link rel="canonical" href="https://xinhaolin.github.io/htmlToWord/articles/html-to-word-go-zh.html"><link rel="alternate" hreflang="en" href="https://xinhaolin.github.io/htmlToWord/articles/html-to-docx-go.html"><link rel="alternate" hreflang="zh-CN" href="https://xinhaolin.github.io/htmlToWord/articles/html-to-word-go-zh.html"><link rel="alternate" hreflang="x-default" href="https://xinhaolin.github.io/htmlToWord/articles/html-to-docx-go.html">
+<meta property="og:type" content="article"><meta property="og:title" content="用 Go 把复杂 HTML 转成可编辑 Word"><meta property="og:description" content="HTMLWord 的技术实现、图表与复选框原生映射、自动分页验证，以及复杂 HTML 转 Word 的支持边界。"><meta property="og:url" content="https://xinhaolin.github.io/htmlToWord/articles/html-to-word-go-zh.html"><meta property="og:image" content="https://xinhaolin.github.io/htmlToWord/assets/social-preview.png"><meta property="og:image:alt" content="HTMLWord converts HTML to editable Word documents in Go"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/wordmark.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><link rel="alternate" type="application/atom+xml" href="../feed.xml" title="HTMLWord notes">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "name": "用 Go 把复杂 HTML 转成可编辑 Word", "description": "HTMLWord 的技术实现、图表与复选框原生映射、自动分页验证，以及复杂 HTML 转 Word 的支持边界。", "url": "https://xinhaolin.github.io/htmlToWord/articles/html-to-word-go-zh.html", "inLanguage": "zh-CN", "isPartOf": {"@type": "WebSite", "name": "HTMLWord", "url": "https://xinhaolin.github.io/htmlToWord/"}, "author": {"@type": "Person", "name": "xinhaolin", "url": "https://github.com/xinhaolin"}}</script><script src="../assets/site.js" defer></script></head>
+<body><a class="skip" href="#content">跳到正文</a><header><a class="wordmark" href="../index.html">HTMLWord<span>Go SDK</span></a><nav aria-label="Main"><a href="../guides/getting-started.html">入门</a><a href="../examples/index.html">案例</a><a href="html-to-word-go-zh.html">技术文章</a><a href="../index.html">English</a><a href="https://github.com/xinhaolin/htmlToWord">GitHub ↗</a></nav></header>
+<main id="content"><article class="prose"><p class="eyebrow">TECHNICAL NOTES / 2026-10-22</p><h1>用 Go 把复杂 HTML 转成可编辑 Word</h1>
+<p>做 HTML 导出时，生成一个看起来像原网页的文件还不够。业务人员往往需要继续修改正文、补充整段说明、调整表格，并让文档自然跨页。截图不能完成这些操作；把每个文字片段固定在坐标上，也会让后续编辑变得困难。</p>
+<p>HTMLWord 是为这个工作流实现的 Go SDK：输入静态 HTML 和 CSS，由 Chromium 测量布局，再由 Go OOXML 写入器生成 DOCX。正文、列表和表格保留为原生文档内容；带显式数据的图表生成 Office 图表和 XLSX 工作簿；checkbox 生成 Word 内容控件。转换需要单独安装 Chromium，Go 模块本身没有第三方 Go 依赖。</p>
+<h2>转换过程</h2>
+<p>第一步处理静态输入，移除脚本、事件处理器和嵌入的活动内容。第二步启动独立 Chromium，按所选纸张的内容宽度测量元素和计算样式。第三步把结果映射为 Word 段落、文字运行、表格和 Office 对象，再组装 DOCX 包。</p>
+<p>浏览器使用隔离的临时配置目录，通过管道通信，不复用用户浏览器配置。SDK 控制并发、排队和超时，并将 context 取消信号传入转换与资源加载过程。调用方需要关闭创建的 Converter。</p>
+<h2>为什么要保留自然排版</h2>
+<p>导出通常只是协作的开始。报告交出去以后，有人要改一段结论，有人要往表格里添加说明，还有人会连续追加几十段内容。文档应该通过正常的段落与分页机制响应这些修改。</p>
+<p>因此，普通文字写成段落和 runs，表格保留为表格，许多 flex/grid 布局映射为可编辑的布局表格。这能保留后续编辑能力，但浏览器与办公软件的字体度量、断行和版式模型不同，复杂样式会有偏差。</p>
+<p>项目不承诺任意 HTML 在所有 Word、WPS、LibreOffice 版本里像素完全一致。已识别的转换损失会通过结构化诊断返回，调用方可以决定是否接受；严格模式可以拒绝包含警告的转换。</p>
+<h2>图表和复选框需要原生对象</h2>
+<p>截图里没有可以交给办公软件编辑的数据系列。HTMLWord 使用 data-office-chart 显式注解接收图表类型、分类和数值，生成 Office 图表部件，并把数据写进嵌入的 XLSX 工作簿。目前支持折线图、柱状图、条形图、饼图和环形图。</p>
+<p>这里要求提供实际数据，不会从任意 SVG 或截图中猜测数值。普通 SVG 会作为图像嵌入，其中的文字也不会自动变成原生可编辑文字。</p>
+<p>HTML 的 checkbox 则映射为 w14:checkbox 内容控件，保留初始选中状态，disabled 输入会锁定。浏览器中的表单提交和 JavaScript 事件不会进入 Word。</p>
+<h2>如何试用</h2>
+<pre><code>go get github.com/xinhaolin/htmlToWord@v0.1.0</code></pre>
+<p>创建 Converter 后，传入 context、输出 writer 和 HTML 即可转换，用完关闭 Converter。<a href="../guides/getting-started.html">入门指南</a>提供完整 Go 示例，也可以直接安装 CLI 做文件转换。</p>
+<p>外部资源默认关闭。内联 CSS、data URI 可以直接使用；本地图片和样式表通过显式文件系统 Resolver 加载；公网资源可以配置域名白名单；需要鉴权的资源可由业务实现自己的 Resolver。</p>
+<h2>已验证到什么程度</h2>
+<p>仓库中包含 12 个复杂的合成案例，覆盖经营报告、技术规格、合同、设备目录、手册等。当前回归集包含 27 个原始页面、8 个原生图表及其工作簿、8 个 checkbox 和 9 个图片对象。检查涵盖文字顺序、合并单元格、图表数值、缓存和工作簿单元格。</p>
+<p>其中三个 DOCX 各追加了 30 个原生段落，分别由 2 页增长到 4 页。这个过程没有重新转换 HTML，用来验证导出后的内容流动。独立 WPS 探针也验证过复选框点击、保存后的状态变化。本次发布演示又在 WPS 12.9 中点击一个复选框、追加 24 个整段，文档从 1 页自然增长至 3 页；保存后的 XML 确认了选中状态和全部新增段落。</p>
+<p>这些结果有明确边界：WPS 的完整“编辑图表数据”界面尚未验收，本地也没有 Microsoft Word 环境。案例页提供真实 DOCX 渲染和下载，方便使用者在自己的办公软件版本中复测。</p>
+<h2>接下来怎么改进</h2>
+<p>复杂 CSS 的还原、独立样本覆盖和长时间服务运行指标仍需完善。当前支持 macOS 和 Linux，Windows 管道传输尚未支持。每次转换会启动独立浏览器，还没有浏览器池，因此吞吐量需要在具体部署环境里实测。</p>
+<p>欢迎用最小静态 HTML、所用字体和运行环境、办公软件版本，以及期望和实际结果来反馈问题。<a href="https://github.com/xinhaolin/htmlToWord">GitHub 仓库</a>、<a href="../examples/index.html">复杂案例</a>和<a href="https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0">版本下载</a>中包含试用入口与可复现素材。</p></article></main><footer><a class="wordmark" href="../index.html">HTMLWord</a><p>Static HTML. Editable documents. Go SDK.</p><div><a href="https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0">v0.1.0</a><a href="https://github.com/xinhaolin/htmlToWord/blob/main/LICENSE">Apache-2.0</a><a href="https://github.com/xinhaolin/htmlToWord/issues">Issues</a><a href="https://github.com/xinhaolin/htmlToWord/security/advisories/new">Report a vulnerability</a><a href="../validation.md">Validation scope</a></div></footer></body></html>

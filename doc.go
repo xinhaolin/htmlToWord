@@ -1,4 +1,4 @@
-// Package htmlword converts static HTML and CSS into editable, flowing DOCX.
+// Package htmlword converts static HTML and CSS to editable Word (DOCX) documents in Go.
 //
 // Chromium computes the input layout; Go writes native Word paragraphs, tables,
 // charts and checkbox controls. No HTTP server or office application is needed
