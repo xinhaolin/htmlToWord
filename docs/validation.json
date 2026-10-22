@@ -1,0 +1,369 @@
+{
+  "date": "2026-10-21",
+  "module_path": "github.com/xinhaolin/htmlToWord",
+  "module_path_is_placeholder": false,
+  "environment": {
+    "platform": "darwin/arm64",
+    "go": "go1.26.2",
+    "chromium": "155.0.8059.85",
+    "renderer": "render_docx.py using LibreOfficeDev 26.8.0.0.alpha0 and Poppler",
+    "fonts": "Locally installed Arial and fallback fonts; font binaries not redistributed",
+    "fontconfig_sha256": "fe5245b8725c241492de73aecf899a8ce33b35bfac176c8445f893a009f4b173"
+  },
+  "tests": {
+    "root_race": true,
+    "root_vet": true,
+    "chromium_integration_race": true,
+    "playground_race": true,
+    "playground_vet": true,
+    "native_xml_fuzz_executions": 9380,
+    "independent_consumer": true,
+    "linux_amd64_cross_build": true,
+    "linux_runtime_tested": false,
+    "real_browser_deterministic_repeat_documents": 3,
+    "direct_sdk_regression_documents": 12,
+    "native_nesting_limit_no_truncation": true,
+    "real_chromium_resource_cancellation_cleanup": true,
+    "base_url_layout_regression_red_green": true,
+    "cli_same_input_byte_identical_to_sdk": true,
+    "hosted_ci_included_in_rendering_baseline": false
+  },
+  "regression_options": {
+    "page": "A4",
+    "margin_mm": 20,
+    "page_numbers": true,
+    "media": "print",
+    "footer_mode": "auto",
+    "symbol_checkboxes": true
+  },
+  "samples": [
+    {
+      "id": "batch_annual",
+      "canonical_pages": 2,
+      "source_characters": 623,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 60,
+      "native_charts": 3,
+      "native_checkboxes": 0,
+      "native_pictures": 0,
+      "embedded_workbooks": 3,
+      "docx_sha256": "2fe46b69d4088ba8a12f5bdb24b82020ffc6f9670ae320328a00d26734069e81",
+      "errors": []
+    },
+    {
+      "id": "batch_agreement",
+      "canonical_pages": 2,
+      "source_characters": 952,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 58,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 0,
+      "embedded_workbooks": 0,
+      "docx_sha256": "fede180127123813a6bc9064356e42aa7a30e06e52483f23d2042fcd01426100",
+      "errors": []
+    },
+    {
+      "id": "batch_spec",
+      "canonical_pages": 3,
+      "source_characters": 1077,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 143,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 1,
+      "embedded_workbooks": 0,
+      "docx_sha256": "5038efc9da6a1bcb625cf844228c44e11a8b7e32d54166c7372ec5c7fa33ff8c",
+      "errors": []
+    },
+    {
+      "id": "batch_brand",
+      "canonical_pages": 2,
+      "source_characters": 607,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 54,
+      "native_charts": 1,
+      "native_checkboxes": 0,
+      "native_pictures": 1,
+      "embedded_workbooks": 1,
+      "docx_sha256": "8a47aeaf30932a501d671faf97925254efc3325d42feb9d1ad91796f5c12287b",
+      "errors": []
+    },
+    {
+      "id": "batch_quote",
+      "canonical_pages": 2,
+      "source_characters": 1057,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 169,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 0,
+      "embedded_workbooks": 0,
+      "docx_sha256": "bae3cac9c4fc27972314fd5cb5d73b79aad7656165a738d65358582acc0c1632",
+      "errors": []
+    },
+    {
+      "id": "batch_event",
+      "canonical_pages": 2,
+      "source_characters": 709,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 80,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 1,
+      "embedded_workbooks": 0,
+      "docx_sha256": "525376a1806a5649b03f2cf0a5db651ce3a5b43ac86086bbbe942e67158caa3d",
+      "errors": []
+    },
+    {
+      "id": "batch_fieldguide",
+      "canonical_pages": 2,
+      "source_characters": 768,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 83,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 1,
+      "embedded_workbooks": 0,
+      "docx_sha256": "41eab457f5e5d69ea2cb8bbf035a333f512124f7b0e04291410d998d6addaecd",
+      "errors": []
+    },
+    {
+      "id": "batch_plan",
+      "canonical_pages": 2,
+      "source_characters": 641,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 197,
+      "native_charts": 0,
+      "native_checkboxes": 0,
+      "native_pictures": 0,
+      "embedded_workbooks": 0,
+      "docx_sha256": "ccd0758e5b4193786f0fca88331201c8c3130dc4be9835d373d23b8aeac3008a",
+      "errors": []
+    },
+    {
+      "id": "batch_incident",
+      "canonical_pages": 2,
+      "source_characters": 810,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 54,
+      "native_charts": 1,
+      "native_checkboxes": 0,
+      "native_pictures": 0,
+      "embedded_workbooks": 1,
+      "docx_sha256": "1acda09d9b7144879ffead8f34731ff1ece10e80fdae781ee6d4f1719230667c",
+      "errors": []
+    },
+    {
+      "id": "batch_catalogue",
+      "canonical_pages": 3,
+      "source_characters": 828,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 87,
+      "native_charts": 3,
+      "native_checkboxes": 0,
+      "native_pictures": 4,
+      "embedded_workbooks": 3,
+      "docx_sha256": "32d46eeab7ca1fe32a5397b3ca8b9fa18a5f57609b7a958323bf8cec761d14a1",
+      "errors": []
+    },
+    {
+      "id": "batch_handbook",
+      "canonical_pages": 2,
+      "source_characters": 568,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 53,
+      "native_charts": 0,
+      "native_checkboxes": 4,
+      "native_pictures": 1,
+      "embedded_workbooks": 0,
+      "docx_sha256": "9a9ac180f05c92afd7b3c4c84685e0d6c74ed02371bbceec1c104f3480d66291",
+      "errors": []
+    },
+    {
+      "id": "batch_workbook",
+      "canonical_pages": 3,
+      "source_characters": 897,
+      "missing_characters": 0,
+      "source_body_characters_preserved": true,
+      "body_character_order_preserved": true,
+      "native_text_paragraphs": 62,
+      "native_charts": 0,
+      "native_checkboxes": 4,
+      "native_pictures": 0,
+      "embedded_workbooks": 0,
+      "docx_sha256": "7ae7af25995509d6dc5f0692094873f877bacc2be040ef90727117aca7aaed75",
+      "errors": []
+    }
+  ],
+  "edit_reflow": [
+    {
+      "id": "batch_annual",
+      "inserted_native_paragraphs": 30,
+      "original_content_preserved": true,
+      "before_pages": 2,
+      "after_pages": 4,
+      "increased_pages": true,
+      "method": "direct OOXML paragraph insertion then LibreOffice rendering",
+      "client_editing_tested": false
+    },
+    {
+      "id": "batch_quote",
+      "inserted_native_paragraphs": 30,
+      "original_content_preserved": true,
+      "before_pages": 2,
+      "after_pages": 4,
+      "increased_pages": true,
+      "method": "direct OOXML paragraph insertion then LibreOffice rendering",
+      "client_editing_tested": false
+    },
+    {
+      "id": "batch_handbook",
+      "inserted_native_paragraphs": 30,
+      "original_content_preserved": true,
+      "before_pages": 2,
+      "after_pages": 4,
+      "increased_pages": true,
+      "method": "direct OOXML paragraph insertion then LibreOffice rendering",
+      "client_editing_tested": false
+    }
+  ],
+  "pixel_regression": {
+    "compared_pages": 39,
+    "identical_pages": 39,
+    "reference": "Previously reviewed pre-SDK engine output in the same environment",
+    "html_to_word_pixel_parity_tested": false
+  },
+  "showcases": {
+    "sdk-report": {
+      "source": "testdata/html/sdk-report.html",
+      "source_sha256": "d03e43f3090fc206ca8a7244cf7e5a6e63baa30d509111e26dad4bf16e92696c",
+      "docx_sha256": "41b51e9ff85a16af0c03779a9358500c8d8d6963838a4b111b396a0f0fd059f9",
+      "screenshot": "docs/assets/sdk-report.png",
+      "screenshot_sha256": "e3b4a268fbda7a2bd13151b220282475aa54d39df34c26cccb6481917d4189fb",
+      "pages": 1,
+      "native_charts": 1,
+      "embedded_workbooks": 1,
+      "native_checkboxes": 0,
+      "all_pages_visually_reviewed": true,
+      "image_processing": "Unmodified full-page PNG from the canonical DOCX render"
+    },
+    "sdk-form": {
+      "source": "testdata/html/sdk-form.html",
+      "source_sha256": "ad822fce191ae4211b4ca794982b92f46f82e10eeffa6ef9c9dab892824011ba",
+      "docx_sha256": "01797183928e4002bcdfb5dc3b2fc9a507ef4afbf7d731293a4a779947ad6602",
+      "screenshot": "docs/assets/sdk-form.png",
+      "screenshot_sha256": "7489d80b746edffb3a90d95b80d0d14e53fd358da6b2e7512cf8f6b94c0dec01",
+      "pages": 1,
+      "native_charts": 0,
+      "embedded_workbooks": 0,
+      "native_checkboxes": 4,
+      "all_pages_visually_reviewed": true,
+      "image_processing": "Unmodified full-page PNG from the canonical DOCX render"
+    }
+  },
+  "current_word_wps_acceptance": false,
+  "limitations": [
+    "WPS chart Edit Data workflow remains unverified.",
+    "Earlier independent WPS checkbox toggle/save probe was not repeated by the SDK refactor.",
+    "No production throughput or memory guarantee."
+  ],
+  "sdk_source_sha256": {
+    "converter.go": "109b9e225337b649f93f37111027dc45e36d28bce55bf24d7a802316b204e033",
+    "diagnostics.go": "ee5168cd4d5ae5216eb99d10c8c4ee05e721f98bbb658b656ee149d761f72e79",
+    "doc.go": "cec1fd7f54a8cb3cd26b87c63f25b62b52acb34e7c758beb2826421bc6dba109",
+    "errors.go": "2887169dca0c1cdf0963bfecb1596ac04d5bf0c7fecef4f5aede9042364726d4",
+    "go.mod": "43747dc8b38a80c7a691e05de2818566f4435772b38928d58ada80bac0fa8e97",
+    "internal/cdp/browser.go": "7a98c3156dccfa342f14232421b2210a011edcac76ec1dc99ff83098197a98e8",
+    "internal/convert/browser.go": "3e8d26a8f2b79c0a7e2bf6103d7d163217760e5e4b8ced0f48e7a65d00bcd91f",
+    "internal/convert/docx.go": "8e89fed76b26d79c13521b93ddc73c40e97bd13c9986c8c6a82cbc10a6969e73",
+    "internal/convert/extract.js": "641670fa7dcd6e3af4c914f3ace9fdfb0e30882c7370c3e3f951197fc9be136b",
+    "internal/convert/model.go": "03d61d660ab92591a2812413df0973ba568aecce243d0a65efe20f4fc7589ee1",
+    "internal/convert/office.go": "dba885dbb2f85c0641049c6fbb2f61f2c0e7a4ea6935288282e41370fc3e6713",
+    "internal/convert/pagination.go": "b9b779fb85f326b1b288225a50a9a393a83081591d0e362496898f57fedbbb2d",
+    "internal/convert/runtime.go": "936b5809fa474ef654d6322d9b438cd44760d635be942abfe3af6821da0b2b34",
+    "resources.go": "16f6de0e2c38872dd62879ba4ba2e24778bbf0ff40aef18aa5438083dce37863",
+    "types.go": "257683ff8a00bb9001e1a1fd1e2f1e5fd0799d37098669344c4a60ece20b2af3"
+  },
+  "direct_sdk_package_comparison": [
+    {
+      "id": "batch_annual",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_agreement",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_spec",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_brand",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_quote",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_event",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_fieldguide",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_plan",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_incident",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_catalogue",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_handbook",
+      "identical_package_parts_except_creation_metadata": true
+    },
+    {
+      "id": "batch_workbook",
+      "identical_package_parts_except_creation_metadata": true
+    }
+  ],
+  "repository_verification": {
+    "date": "2026-10-22",
+    "module_path": "github.com/xinhaolin/htmlToWord",
+    "repository_url": "https://github.com/xinhaolin/htmlToWord",
+    "direct_consumer_documents_checked": 14,
+    "all_outputs_byte_identical_to_rendered_baseline": true,
+    "ci_results_url": "https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml"
+  },
+  "stable_version_tag_published": false
+}

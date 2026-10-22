@@ -1,0 +1,48 @@
+name: Go SDK
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-14]
+        go: ['1.23.x', stable]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - run: go test -race ./...
+      - run: go vet ./...
+      - run: go build ./cmd/htmlword ./examples/...
+      - run: go test -race ./... && go vet ./...
+        working-directory: tools/playground
+  chromium:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache: false
+      - name: Locate installed Chrome
+        shell: bash
+        run: |
+          browser=$(command -v google-chrome || command -v chromium || true)
+          test -n "$browser" || { echo 'Install Chrome/Chromium on this runner'; exit 1; }
+          echo "HTMLWORD_CHROME=$browser" >> "$GITHUB_ENV"
+      - run: go test -race ./...
+        env:
+          HTMLWORD_INTEGRATION: '1'
+      - run: go test -run '^$' -fuzz FuzzNativeTextXML -fuzztime 5s .

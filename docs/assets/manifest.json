@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-21",
+  "generation": "Independent Go consumer importing the public SDK; no HTTP server",
+  "environment": {
+    "platform": "darwin/arm64",
+    "go": "go1.26.2",
+    "chromium": "155.0.8059.85",
+    "renderer": "render_docx.py using LibreOfficeDev 26.8.0.0.alpha0 and Poppler",
+    "fonts": "Locally installed Arial and fallback fonts; font binaries not redistributed",
+    "fontconfig_sha256": "fe5245b8725c241492de73aecf899a8ce33b35bfac176c8445f893a009f4b173"
+  },
+  "options": {
+    "page": "A4",
+    "margin_mm": 20,
+    "media": "print",
+    "deterministic": true,
+    "footer_mode": "preserve",
+    "symbol_checkboxes": false
+  },
+  "screenshots": {
+    "sdk-report": {
+      "source": "testdata/html/sdk-report.html",
+      "source_sha256": "d03e43f3090fc206ca8a7244cf7e5a6e63baa30d509111e26dad4bf16e92696c",
+      "docx_sha256": "41b51e9ff85a16af0c03779a9358500c8d8d6963838a4b111b396a0f0fd059f9",
+      "screenshot": "docs/assets/sdk-report.png",
+      "screenshot_sha256": "e3b4a268fbda7a2bd13151b220282475aa54d39df34c26cccb6481917d4189fb",
+      "pages": 1,
+      "native_charts": 1,
+      "embedded_workbooks": 1,
+      "native_checkboxes": 0,
+      "all_pages_visually_reviewed": true,
+      "image_processing": "Unmodified full-page PNG from the canonical DOCX render"
+    },
+    "sdk-form": {
+      "source": "testdata/html/sdk-form.html",
+      "source_sha256": "ad822fce191ae4211b4ca794982b92f46f82e10eeffa6ef9c9dab892824011ba",
+      "docx_sha256": "01797183928e4002bcdfb5dc3b2fc9a507ef4afbf7d731293a4a779947ad6602",
+      "screenshot": "docs/assets/sdk-form.png",
+      "screenshot_sha256": "7489d80b746edffb3a90d95b80d0d14e53fd358da6b2e7512cf8f6b94c0dec01",
+      "pages": 1,
+      "native_charts": 0,
+      "embedded_workbooks": 0,
+      "native_checkboxes": 4,
+      "all_pages_visually_reviewed": true,
+      "image_processing": "Unmodified full-page PNG from the canonical DOCX render"
+    }
+  },
+  "sdk_source_sha256": {
+    "converter.go": "109b9e225337b649f93f37111027dc45e36d28bce55bf24d7a802316b204e033",
+    "diagnostics.go": "ee5168cd4d5ae5216eb99d10c8c4ee05e721f98bbb658b656ee149d761f72e79",
+    "doc.go": "cec1fd7f54a8cb3cd26b87c63f25b62b52acb34e7c758beb2826421bc6dba109",
+    "errors.go": "2887169dca0c1cdf0963bfecb1596ac04d5bf0c7fecef4f5aede9042364726d4",
+    "go.mod": "43747dc8b38a80c7a691e05de2818566f4435772b38928d58ada80bac0fa8e97",
+    "internal/cdp/browser.go": "7a98c3156dccfa342f14232421b2210a011edcac76ec1dc99ff83098197a98e8",
+    "internal/convert/browser.go": "3e8d26a8f2b79c0a7e2bf6103d7d163217760e5e4b8ced0f48e7a65d00bcd91f",
+    "internal/convert/docx.go": "8e89fed76b26d79c13521b93ddc73c40e97bd13c9986c8c6a82cbc10a6969e73",
+    "internal/convert/extract.js": "641670fa7dcd6e3af4c914f3ace9fdfb0e30882c7370c3e3f951197fc9be136b",
+    "internal/convert/model.go": "03d61d660ab92591a2812413df0973ba568aecce243d0a65efe20f4fc7589ee1",
+    "internal/convert/office.go": "dba885dbb2f85c0641049c6fbb2f61f2c0e7a4ea6935288282e41370fc3e6713",
+    "internal/convert/pagination.go": "b9b779fb85f326b1b288225a50a9a393a83081591d0e362496898f57fedbbb2d",
+    "internal/convert/runtime.go": "936b5809fa474ef654d6322d9b438cd44760d635be942abfe3af6821da0b2b34",
+    "resources.go": "16f6de0e2c38872dd62879ba4ba2e24778bbf0ff40aef18aa5438083dce37863",
+    "types.go": "257683ff8a00bb9001e1a1fd1e2f1e5fd0799d37098669344c4a60ece20b2af3"
+  },
+  "limitations": [
+    "These are DOCX render screenshots, not HTML browser captures.",
+    "No claim of identical rendering in Word/WPS or of universal HTML fidelity."
+  ],
+  "repository_verification": {
+    "date": "2026-10-22",
+    "module_path": "github.com/xinhaolin/htmlToWord",
+    "repository_url": "https://github.com/xinhaolin/htmlToWord",
+    "direct_consumer_documents_checked": 14,
+    "all_outputs_byte_identical_to_rendered_baseline": true,
+    "ci_results_url": "https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml"
+  }
+}

@@ -1,0 +1,11 @@
+/bin/
+/dist/
+/tools/validation/artifacts/
+/batch/
+*.docx
+*.pdf
+*.log
+/tmp/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>表格与合并单元格</title>
+<style>
+body{font-family:Arial,'PingFang SC',sans-serif;color:#253044;font-size:14px;line-height:1.65}h1{font-size:30px;line-height:1.25;margin:0 0 12px}h2{font-size:19px;margin:26px 0 10px}h3{font-size:15px;margin:16px 0 7px}p{margin:0 0 12px}table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid #dce2e9;padding:9px 11px;text-align:left}th{background:#eff3f8;font-weight:600}ul,ol{padding-left:25px;margin:10px 0}li{margin-bottom:6px}a{color:#3158c8}small{font-size:11px;color:#7a8698}.muted{color:#7a8698}.label{font-size:11px;letter-spacing:2px;color:#3158c8;margin-bottom:14px}.lead{font-size:16px;line-height:1.8;color:#59677b}blockquote{margin:18px 0;padding-left:16px;border-left:3px solid #3158c8;color:#64748b}pre{font:12px/1.7 monospace;background:#f3f5f8;padding:14px;white-space:pre-wrap}code{font-family:monospace;background:#f0f3f6}hr{border:0;border-top:1px solid #dce2e9;margin:20px 0}
+</style>
+</head>
+<body>
+<p class="label">TABLE STRUCTURE</p>
+<h1>采购清单</h1>
+<p class="muted">原生表格 · 横向与纵向合并 · 表头重复</p>
+<table>
+<thead><tr><th>分类</th><th>项目名称</th><th>数量</th><th>单价</th><th>小计</th></tr></thead>
+<tbody>
+<tr><td rowspan="2">设备</td><td>工作站</td><td>2</td><td>8,000</td><td>16,000</td></tr>
+<tr><td>显示器</td><td>4</td><td>2,000</td><td>8,000</td></tr>
+<tr><td>服务</td><td>部署与培训</td><td>1</td><td>3,000</td><td>3,000</td></tr>
+<tr><td colspan="4" style="text-align:right;font-weight:bold">合计</td><td><strong>27,000</strong></td></tr>
+</tbody></table>
+<h2>交付说明</h2>
+<ol start="3"><li>设备配置以确认清单为准。</li><li>完成部署后安排操作培训。<ul><li>基础使用方法</li><li>文档导出与编辑</li></ul></li><li>验收后归档。</li></ol>
+<h2>文字样式测试</h2>
+<p><strong>粗体文字</strong> · <em>斜体文字</em> · <u>下划线</u> · <s>删除线</s> · H<sub>2</sub>O · x<sup>2</sup></p>
+<p>这是一个<a href="https://example.com">可点击的超链接</a>，以及带有<span style="background:#fff2bc;color:#8a5c00">背景色的文字</span>。</p>
+<pre>func exportDocument() {
+    // 代码块保留缩进与换行
+    return "editable DOCX"
+}</pre>
+</body>
+</html>
