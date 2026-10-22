@@ -1,0 +1,105 @@
+{
+  "recorded": "2026-10-22",
+  "kind": "Edited sequence of actual native-app screenshots; cuts and holds, not a continuous screen recording. No simulated office UI.",
+  "client": "WPS Office for macOS 12.9.0.25856",
+  "input": "testdata/html/sdk-form.html",
+  "public_sdk_version": "v0.1.0",
+  "before_sha256": "01797183928e4002bcdfb5dc3b2fc9a507ef4afbf7d731293a4a779947ad6602",
+  "after_sha256": "d5705f5b7dc5641f79db0bca51ce662749cca420f4a100802b9e201aba96248d",
+  "checks": {
+    "checkbox_states_before": [
+      "1",
+      "1",
+      "0",
+      "0"
+    ],
+    "checkbox_states_after": [
+      "1",
+      "1",
+      "1",
+      "0"
+    ],
+    "added_paragraphs": 24,
+    "original_text_preserved_except_toggled_checkbox": true,
+    "wps_saved_pages": 3,
+    "libreoffice_rendered_pages": 3,
+    "all_three_rendered_pages_visually_reviewed": true
+  },
+  "limitations": [
+    "This is one fixture in one WPS build.",
+    "Microsoft Word and full chart Edit Data interaction not verified.",
+    "Screenshots and GIF illustrate editing; DOCX sample content remains native."
+  ],
+  "audio": "Original synthesized tonal bed and interface cues, generated for this demo.",
+  "fonts": [
+    "Arial"
+  ],
+  "scenes": [
+    {
+      "source": "01-original.png",
+      "source_sha256": "c67ad9d16edcc6fe3fd5a23240a226f530167dda0c3fa0d281787dae58354b11",
+      "crop_pixels": [
+        1560,
+        330,
+        2780,
+        2070
+      ],
+      "seconds": 5,
+      "caption": "Static HTML \u2192 editable DOCX"
+    },
+    {
+      "source": "01-original.png",
+      "source_sha256": "c67ad9d16edcc6fe3fd5a23240a226f530167dda0c3fa0d281787dae58354b11",
+      "crop_pixels": [
+        1640,
+        820,
+        2690,
+        1290
+      ],
+      "seconds": 4,
+      "caption": "Native checkbox: before"
+    },
+    {
+      "source": "02-checkbox.png",
+      "source_sha256": "2f34a9e0d536c173f032b0a544e193721de13be4b13265c4b177856531a1a31a",
+      "crop_pixels": [
+        1640,
+        820,
+        2690,
+        1290
+      ],
+      "seconds": 4,
+      "caption": "Native checkbox: after"
+    },
+    {
+      "source": "03-reflow.png",
+      "source_sha256": "51d05cd1ad59f38d148b0efcb0582dfcbe90646bd6a6b6a66b7a15cbe1b9773d",
+      "crop_pixels": [
+        250,
+        0,
+        4150,
+        2200
+      ],
+      "seconds": 7,
+      "caption": "24 new paragraphs. 3 pages."
+    },
+    {
+      "source": "04-saved.png",
+      "source_sha256": "6c7ea61330c0973f2bcd09aae18ae2c5418b63fe4af535e1fecd6e9b44b6106a",
+      "crop_pixels": [
+        250,
+        0,
+        4150,
+        2200
+      ],
+      "seconds": 4,
+      "caption": "Download it. Edit it. Try your client."
+    }
+  ],
+  "outputs": {
+    "editing-demo.mp4": "875f2767754155a935e17bb77fe53e1b4a79a8d6e4c58916077b0ab7c792c280",
+    "editing-demo.gif": "05ca56049eb33ba9587be55cf9894e1db9ed609d50579a9cad2668e3290d3f95",
+    "editing-poster.png": "6eb67917a78e4b620dc3927994fe148e7762a646134406f223800969031a7ee3",
+    "editing-demo.vtt": "014766d029a377cc4208ec92dd1ccf5fbb57894d44b2a0bc97f850d1f50f5526"
+  }
+}

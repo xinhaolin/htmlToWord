@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convert HTML to Word in Go | HTMLWord</title><meta name="description" content="Complete Go HTML to DOCX tutorial: installation, editable paragraphs, local assets and a command-line converter."><link rel="canonical" href="https://xinhaolin.github.io/htmlToWord/guides/getting-started.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Convert HTML to Word in Go"><meta property="og:description" content="Complete Go HTML to DOCX tutorial: installation, editable paragraphs, local assets and a command-line converter."><meta property="og:url" content="https://xinhaolin.github.io/htmlToWord/guides/getting-started.html"><meta property="og:image" content="https://xinhaolin.github.io/htmlToWord/assets/social-preview.png"><meta property="og:image:alt" content="HTMLWord converts HTML to editable Word documents in Go"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/wordmark.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><link rel="alternate" type="application/atom+xml" href="../feed.xml" title="HTMLWord notes">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "name": "Convert HTML to Word in Go", "description": "Complete Go HTML to DOCX tutorial: installation, editable paragraphs, local assets and a command-line converter.", "url": "https://xinhaolin.github.io/htmlToWord/guides/getting-started.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "HTMLWord", "url": "https://xinhaolin.github.io/htmlToWord/"}, "author": {"@type": "Person", "name": "xinhaolin", "url": "https://github.com/xinhaolin"}}</script><script src="../assets/site.js" defer></script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a class="wordmark" href="../index.html">HTMLWord<span>Go SDK</span></a><nav aria-label="Main"><a href="getting-started.html">Quick start</a><a href="../examples/index.html">Examples</a><a href="../articles/html-to-docx-go.html">How it works</a><a href="../zh/index.html">简体中文</a><a href="https://github.com/xinhaolin/htmlToWord">GitHub ↗</a></nav></header>
+<main id="content"><article class="prose"><p class="eyebrow">HTMLWORD / GUIDE</p><h1>Convert HTML to Word in Go</h1>
+<p>HTMLWord converts static HTML and CSS into editable DOCX. It uses Chromium to measure the browser layout and a Go OOXML writer to produce paragraphs, lists, tables, native charts and checkbox content controls. Text remains document content so an office editor can reflow it after an edit.</p>
+<h2>Install</h2>
+<p>Install Go 1.23 or later and Chrome or Chromium, then add the SDK to your Go module:</p>
+<pre><code>go get github.com/xinhaolin/htmlToWord@v0.1.0</code></pre>
+<p>The supported runtime platforms are macOS and Linux. Chromium is a separate executable dependency; there are no third-party Go module dependencies. Fonts used by the source page should also be available to the target office client.</p>
+<h2>A complete conversion</h2>
+<pre><code>package main
+
+import (
+    &quot;context&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+
+    &quot;github.com/xinhaolin/htmlToWord&quot;
+)
+
+func main() {
+    converter, err := htmlword.New(htmlword.Config{})
+    if err != nil { log.Fatal(err) }
+    defer converter.Close()
+
+    output, err := os.Create(&quot;document.docx&quot;)
+    if err != nil { log.Fatal(err) }
+    defer output.Close()
+
+    report, err := converter.Convert(context.Background(), output,
+        htmlword.Input{HTML: `&lt;h1&gt;Project notes&lt;/h1&gt;
+            &lt;p&gt;This paragraph remains editable.&lt;/p&gt;
+            &lt;p&gt;&lt;input type=&quot;checkbox&quot;&gt; Reviewed&lt;/p&gt;`},
+        htmlword.Options{})
+    if err != nil { log.Fatal(err) }
+    log.Printf(&quot;%d bytes, %d diagnostics&quot;, report.Bytes, len(report.Diagnostics))
+}</code></pre>
+<p>Run <code>go run .</code>, then open <code>document.docx</code> in your target Word/WPS client. Adding a paragraph should remain an ordinary document operation. Check native control behavior in the actual client version you intend to support.</p>
+<h2>Select Chromium and a page size</h2>
+<pre><code>converter, err := htmlword.New(htmlword.Config{
+    BrowserPath: &quot;/path/to/chromium&quot;,
+    MaxConcurrency: 2,
+})
+// Handle err, defer converter.Close(), then reuse it.
+options := htmlword.Options{
+    Page: &amp;htmlword.PageSetup{Size: htmlword.A4, MarginMM: 20},
+    PageNumbers: true,
+}</code></pre>
+<p>An empty BrowserPath searches common executable locations. The zero Options value uses A4 portrait, 20 mm margins and print media. A non-nil PageSetup with MarginMM set to zero explicitly requests zero margins.</p>
+<h2>Load local CSS and images explicitly</h2>
+<p>External resources are disabled by default. Inline CSS and data URIs work without a resolver. To load assets from a controlled directory:</p>
+<pre><code>converter, err := htmlword.New(htmlword.Config{
+    Resolver: htmlword.FSResolver(os.DirFS(&quot;assets&quot;)),
+})
+// Handle err and close the converter when finished.
+input := htmlword.Input{
+    HTML: `&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;&lt;h1&gt;Report&lt;/h1&gt;`,
+    BaseURL: &quot;https://assets.invalid/&quot;,
+}</code></pre>
+<p>The directory belongs to the caller. os.DirFS is not an operating-system sandbox; symlink and filesystem access policy remain your responsibility. For public network assets, HTTPResolver supports an explicit host allowlist. Use a custom resolver for authenticated resources and honor context cancellation.</p>
+<h2>Inspect approximations</h2>
+<p>Report.Diagnostics contains structured codes, severity, stage and best-effort DOM locations. Use Options.Strict to reject warning diagnostics before document bytes are written. A successful strict conversion means no reported warnings, not a guarantee of identical browser and Word pixels.</p>
+<h2>Use the CLI</h2>
+<pre><code>go install github.com/xinhaolin/htmlToWord/cmd/htmlword@v0.1.0
+htmlword -input report.html -output report.docx</code></pre>
+<p>The CLI writes through a temporary file before renaming. The SDK accepts a caller-owned writer; a writer I/O error can leave partial bytes, so callers should implement their own rollback when necessary.</p>
+<p>Continue with <a href="native-objects.html">native charts and checkboxes</a>, <a href="pagination.html">pagination and fidelity</a>, or the <a href="../examples/index.html">complex example gallery</a>.</p></article></main><footer><a class="wordmark" href="../index.html">HTMLWord</a><p>Static HTML. Editable documents. Go SDK.</p><div><a href="https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0">v0.1.0</a><a href="https://github.com/xinhaolin/htmlToWord/blob/main/LICENSE">Apache-2.0</a><a href="https://github.com/xinhaolin/htmlToWord/issues">Issues</a><a href="https://github.com/xinhaolin/htmlToWord/security/advisories/new">Report a vulnerability</a><a href="../validation.md">Validation scope</a></div></footer></body></html>

@@ -1,12 +1,33 @@
-# HTMLWord
+# HTMLWord — HTML to Word (DOCX) in Go
 
 [English](README.md) · [简体中文](README.zh-CN.md)
+
+[![Go SDK CI](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml/badge.svg)](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/xinhaolin/htmlToWord.svg)](https://pkg.go.dev/github.com/xinhaolin/htmlToWord) [![Release](https://img.shields.io/github/v/release/xinhaolin/htmlToWord)](https://github.com/xinhaolin/htmlToWord/releases)
 
 将**静态 HTML 和 CSS 转成可编辑、能自然重排和跨页的 DOCX** 的 Go SDK。文字、列表和表格保留为原生文档内容；在办公软件中插入整段文字后，文档可以重新排版并增加页面。
 
 HTMLWord 用 Chromium 测量浏览器布局，用 Go OOXML 写入器生成文档，**没有第三方 Go 模块依赖**。运行时需要单独安装 Chrome 或 Chromium；LibreOffice 和前端验证页面属于可选开发工具。
 
 源码仓库：[xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord) · 许可证：[Apache-2.0](LICENSE)
+
+## 快速安装
+
+```sh
+go get github.com/xinhaolin/htmlToWord@v0.1.0
+```
+
+[文档](https://xinhaolin.github.io/htmlToWord/zh/) · [完整 Go 示例](examples/basic/main.go) · [12 个复杂案例](https://xinhaolin.github.io/htmlToWord/examples/) · [版本与样例下载](https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0)
+
+Chrome/Chromium 是独立运行时依赖。支持 Go 1.23+、macOS 和 Linux。
+
+## 看看导出之后
+
+实际 WPS 编辑画面的剪辑演示：修改文字、复选框交互和自然跨页。素材来源与保存后检查见[演示记录](docs/assets/editing-demo.json)。
+
+[![HTMLWord editing demonstration](docs/assets/editing-demo.gif)](https://xinhaolin.github.io/htmlToWord/assets/editing-demo.mp4)
+
+<details>
+<summary>查看 DOCX 实际渲染截图</summary>
 
 ## 实际导出截图
 
@@ -20,6 +41,8 @@ HTMLWord 用 Chromium 测量浏览器布局，用 Go OOXML 写入器生成文档
 
 [HTML 源文件](testdata/html/sdk-form.html) · 四个原生复选框内容控件、可编辑表格及可继续增加段落的备注区域。静态截图不能证明点击行为，具体证据见[验证范围](docs/validation.md)。
 
+</details>
+
 ## 运行要求和安装
 
 - Go **1.23 或更高版本**。
@@ -31,7 +54,7 @@ Chromium 沙箱保持开启。请以普通用户运行；容器用户和内核�
 在你的 Go 模块中安装 SDK：
 
 ```sh
-go get github.com/xinhaolin/htmlToWord@latest
+go get github.com/xinhaolin/htmlToWord@v0.1.0
 ```
 
 导入路径为 `github.com/xinhaolin/htmlToWord`，Go 包名为 `htmlword`。

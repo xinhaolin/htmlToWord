@@ -1,6 +1,6 @@
 # Contributing
 
-This is a preview SDK hosted at [xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord). Use [issues](https://github.com/xinhaolin/htmlToWord/issues) for reproducible problems and pull requests for proposed changes. The API may change before the first tagged release.
+This is an experimental v0.x SDK hosted at [xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord). Use [issues](https://github.com/xinhaolin/htmlToWord/issues) for reproducible problems and pull requests for proposed changes. The v0.x API is experimental and may change before v1.
 
 ## Set up
 
@@ -20,6 +20,6 @@ Use `go run ./examples/basic` for a public API example. Keep browser path, tempo
 
 The fixtures are fictional demonstration material. Do not contribute personal resumes, access tokens, private URLs, proprietary fonts or unlicensed assets. External runtime binaries and fonts are not bundled with this source distribution.
 
-## Before a first release
+## Before each release
 
-Review API names and licensing, inspect the repository CI results, configure a private security reporting channel, and verify supported Word/WPS versions. Create a version tag only after those checks. Hosted results are available from the repository Actions page; local rendering evidence has its own documented scope.
+Review API names and licensing, inspect the repository CI results, configure a private security reporting channel, and verify supported Word/WPS versions. Create an immutable version tag only after those checks and document any remaining client limitations in the release notes. Hosted results are available from the repository Actions page; local rendering evidence has its own documented scope.

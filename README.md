@@ -1,12 +1,33 @@
-# HTMLWord
+# HTMLWord — HTML to Word (DOCX) in Go
 
 [English](README.md) · [简体中文](README.zh-CN.md)
+
+[![Go SDK CI](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml/badge.svg)](https://github.com/xinhaolin/htmlToWord/actions/workflows/ci.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/xinhaolin/htmlToWord.svg)](https://pkg.go.dev/github.com/xinhaolin/htmlToWord) [![Release](https://img.shields.io/github/v/release/xinhaolin/htmlToWord)](https://github.com/xinhaolin/htmlToWord/releases)
 
 A Go SDK for converting **static HTML and CSS into editable, flowing DOCX documents**. Text, lists and tables remain native document content. Adding paragraphs in an office editor can reflow the document and create new pages.
 
 HTMLWord uses Chromium to measure layout and a Go OOXML writer to build the document. It has **no third-party Go module dependencies**. Chrome or Chromium is a required runtime; LibreOffice and the validation frontend are optional development tools.
 
 Repository: [xinhaolin/htmlToWord](https://github.com/xinhaolin/htmlToWord) · License: [Apache-2.0](LICENSE)
+
+## Install
+
+```sh
+go get github.com/xinhaolin/htmlToWord@v0.1.0
+```
+
+[Documentation](https://xinhaolin.github.io/htmlToWord/) · [Go example](examples/basic/main.go) · [12 complex examples](https://xinhaolin.github.io/htmlToWord/examples/) · [Release and sample downloads](https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0)
+
+Requires separately installed Chrome/Chromium. Go 1.23+, macOS and Linux.
+
+## After export
+
+An edited sequence of actual WPS captures: text editing, checkbox interaction and page reflow. See the [capture and saved-file verification record](docs/assets/editing-demo.json).
+
+[![HTMLWord editing demonstration](docs/assets/editing-demo.gif)](https://xinhaolin.github.io/htmlToWord/assets/editing-demo.mp4)
+
+<details>
+<summary>View actual DOCX render screenshots</summary>
 
 ## Actual output
 
@@ -20,6 +41,8 @@ These are screenshots of DOCX files generated through the public SDK and rendere
 
 [HTML source](testdata/html/sdk-form.html) · Four native checkbox content controls, an editable table and space for additional paragraphs. A static screenshot cannot demonstrate toggling; see the [validation scope](docs/validation.md).
 
+</details>
+
 ## Requirements and installation
 
 - Go **1.23 or later**.
@@ -31,7 +54,7 @@ Chromium's sandbox remains enabled. Run as a normal user with a working sandbox;
 Install the SDK in your Go module:
 
 ```sh
-go get github.com/xinhaolin/htmlToWord@latest
+go get github.com/xinhaolin/htmlToWord@v0.1.0
 ```
 
 Import `github.com/xinhaolin/htmlToWord` and use its Go package name, `htmlword`.

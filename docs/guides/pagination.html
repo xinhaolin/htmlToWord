@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Editable DOCX pagination and fidelity | HTMLWord</title><meta name="description" content="How HTMLWord preserves document flow, page settings and editing behavior, with measured validation and CSS limitations."><link rel="canonical" href="https://xinhaolin.github.io/htmlToWord/guides/pagination.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Editable DOCX pagination and fidelity"><meta property="og:description" content="How HTMLWord preserves document flow, page settings and editing behavior, with measured validation and CSS limitations."><meta property="og:url" content="https://xinhaolin.github.io/htmlToWord/guides/pagination.html"><meta property="og:image" content="https://xinhaolin.github.io/htmlToWord/assets/social-preview.png"><meta property="og:image:alt" content="HTMLWord converts HTML to editable Word documents in Go"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/wordmark.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><link rel="alternate" type="application/atom+xml" href="../feed.xml" title="HTMLWord notes">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "name": "Editable DOCX pagination and fidelity", "description": "How HTMLWord preserves document flow, page settings and editing behavior, with measured validation and CSS limitations.", "url": "https://xinhaolin.github.io/htmlToWord/guides/pagination.html", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "HTMLWord", "url": "https://xinhaolin.github.io/htmlToWord/"}, "author": {"@type": "Person", "name": "xinhaolin", "url": "https://github.com/xinhaolin"}}</script><script src="../assets/site.js" defer></script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a class="wordmark" href="../index.html">HTMLWord<span>Go SDK</span></a><nav aria-label="Main"><a href="getting-started.html">Quick start</a><a href="../examples/index.html">Examples</a><a href="../articles/html-to-docx-go.html">How it works</a><a href="../zh/index.html">简体中文</a><a href="https://github.com/xinhaolin/htmlToWord">GitHub ↗</a></nav></header>
+<main id="content"><article class="prose"><p class="eyebrow">HTMLWORD / GUIDE</p><h1>Editable DOCX pagination and layout fidelity</h1>
+<p>A browser lays out a page on a continuous canvas. Word lays out paragraphs, tables, sections and objects across physical pages. HTMLWord measures the first model and writes structures in the second, preserving document flow wherever possible.</p>
+<h2>Keep content in normal flow</h2>
+<p>Use headings, paragraphs, lists and tables for content that must grow after export. Many flex and grid arrangements become editable layout tables. Adding text can then change line wrapping, row height and page count in the office editor.</p>
+<p>Absolute positions, transforms and clipping do not have a universal equivalent in a flowing Word document. They may be approximated and reported through diagnostics. A layout that looks correct in one font environment can wrap differently in another.</p>
+<h2>Choose page settings explicitly</h2>
+<pre><code>options := htmlword.Options{
+    Page: &amp;htmlword.PageSetup{
+        Size: htmlword.A4,
+        MarginMM: 20,
+        Landscape: false,
+    },
+    PageNumbers: true,
+}</code></pre>
+<p>A4, A3 and Letter are supported. Print media is the default; select screen media deliberately when the source page needs it. Include the required fonts in both the conversion environment and the target office environment.</p>
+<h2>Footers and literal symbols are explicit choices</h2>
+<p>HTML footer content remains in the document body by default. FooterMode set to FooterAuto opts into promotion of a short footer to repeated Word footer content. Explicit Header and Footer options create native repeated content. These choices affect editing semantics, so they are not guessed silently by the public SDK.</p>
+<h2>Read the validation correctly</h2>
+<p>The 12 complex regression fixtures contain 27 original pages, eight native charts and workbooks, eight checkbox controls and nine pictures. Three documents received 30 additional native paragraphs each and grew from two to four rendered pages. These edits did not rerun the source HTML.</p>
+<p>All 39 rendered pages matched the earlier reviewed engine baseline in the same macOS/font/LibreOffice environment. This is regression evidence for the SDK refactor. It does not mean the HTML and Word versions have identical pixels, or that every office client renders them identically.</p>
+<h2>Known boundaries</h2>
+<p>SVG is embedded as an image, so text inside SVG is not native editable text. Gradients, CSS background images, shadows, complex spanning grids and long-sidebar decoration have incomplete fidelity. Scripts and embedded pages are removed; canvas and animation are not executed. Supply static content and explicit chart data.</p>
+<p>Use the <a href="../examples/index.html">gallery</a> to inspect real output. The full <a href="../validation.md">validation scope</a> records test environments and remaining client checks. Submit a minimal synthetic HTML fixture with the expected and actual result when reporting a conversion issue.</p></article></main><footer><a class="wordmark" href="../index.html">HTMLWord</a><p>Static HTML. Editable documents. Go SDK.</p><div><a href="https://github.com/xinhaolin/htmlToWord/releases/tag/v0.1.0">v0.1.0</a><a href="https://github.com/xinhaolin/htmlToWord/blob/main/LICENSE">Apache-2.0</a><a href="https://github.com/xinhaolin/htmlToWord/issues">Issues</a><a href="https://github.com/xinhaolin/htmlToWord/security/advisories/new">Report a vulnerability</a><a href="../validation.md">Validation scope</a></div></footer></body></html>

@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00.000 --> 00:05.000
+Static HTML → editable DOCX. Exported with the public Go SDK. Opened in WPS Office.
+
+00:05.000 --> 00:09.000
+Native checkbox: before. The maintenance handover control is unchecked.
+
+00:09.000 --> 00:13.000
+Native checkbox: after. Clicked in WPS. Saved DOCX state verified as checked.
+
+00:13.000 --> 00:20.000
+24 new paragraphs. 3 pages.. Ordinary text added after export; WPS reflows the document.
+
+00:20.000 --> 00:24.000
+Download it. Edit it. Try your client.. github.com/xinhaolin/htmlToWord · Go 1.23+ · Chromium required

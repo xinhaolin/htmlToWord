@@ -264,7 +264,16 @@ func TestBrowserRuntimeIntegration(t *testing.T) {
 		t.Fatal(err)
 	}
 	temp := t.TempDir()
-	c, err := New(Config{BrowserPath: path, TempDir: temp, Resolver: FSResolver(fstest.MapFS{"style.css": &fstest.MapFile{Data: []byte("h1{color:#397384}")}})})
+	assets := FSResolver(fstest.MapFS{"style.css": &fstest.MapFile{Data: []byte("h1{color:#397384}")}})
+	c, err := New(Config{BrowserPath: path, TempDir: temp, Resolver: ResourceResolverFunc(func(ctx context.Context, ref string) (Resource, error) {
+		// A real stylesheet need not arrive before the first layout evaluation.
+		select {
+		case <-time.After(200 * time.Millisecond):
+			return assets.Resolve(ctx, ref)
+		case <-ctx.Done():
+			return Resource{}, ctx.Err()
+		}
+	})})
 	if err != nil {
 		t.Fatal(err)
 	}
